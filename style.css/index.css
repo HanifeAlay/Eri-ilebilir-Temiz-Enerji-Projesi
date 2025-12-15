@@ -1,207 +1,207 @@
-/* Body Düzenlemeleri */
-body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    font-family: "Playfair Display", serif;
-    
+/* =========================
+   1) RESET / BODY
+========================= */
+* { box-sizing: border-box; }
+
+html, body{
+  margin: 0;
+  padding: 0;
+  font-family: "Playfair Display", serif;
 }
- /* Hero ve Navbar Düzenlemleri */
- .hero {
+
+.hero{
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Arka plan katmanı */
+.hero-bg{
+  position: relative;
   min-height: 100vh;
   background-image: url("../İmages/arkaplan1.png");
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+/* =========================
+   3) NAVBAR / ICON
+========================= */
+.navbar{
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-
- }
- .hero-content {
-  position:absolute;
-  top: 50%;  
-  left:48%;
-  transform:translate(-50%,-50%);
-  z-index: 5;
-  text-align:center;
-  width: max-content; 
-  max-width: 90vw;   
- }
-
-.hero-content h1{
-  color: #1f3f1b;         
-  font-weight: 800;
-  letter-spacing: 0.5px;
-  text-shadow: 0 2px 10px rgba(255, 235, 120, 0.35);
-  font-size: 35px;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  z-index: 20; /* her şeyin üstünde */
 }
 
-.hero-content p{
-  margin-top: 10px;
-  color: #2e5b2a;
-  font-weight: 600;
-  font-size: 20px;
-  opacity: 0.95;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
-}
-.hero-content h1,
-.hero-content p{
-  animation: glowPulse 2.8s ease-in-out infinite;
-}
-
-@keyframes glowPulse{
-  0%   { box-shadow: 0 0 0 rgba(255, 255, 150, 0.0); }
-  50%  { box-shadow: 0 0 22px rgba(255, 255, 150, 0.45); }
-  100% { box-shadow: 0 0 0 rgba(255, 255, 150, 0.0); }
-}
-
-
- .hero-bg{
-  position:absolute;
-  inset:0;
-  background-image: url("../İmages/arkaplan1.png");
-  background-size: cover;
-  background-position: center;
-  transform: scale(1);
-  animation: slowZoom 18s ease-in-out infinite alternate;
-  z-index:0;
-  overflow: hidden;
-}
 .bi{
   font-size: 35px;
   color: #1f3f1b;
   cursor: pointer;
 }
 
-/* offCanvas Düzenlemeleri */
-
-.offcanvas {
+/* =========================
+   4) OFFCANVAS
+========================= */
+.offcanvas{
   background-color: #f7f8f5;
   color: #1f3f1b;
 }
 
-.offcanvas-title {
+.offcanvas-title{
   font-weight: 700;
   font-size: 30px;
   color: #1f3f1b;
 }
-.offcanvas-body {
+
+.offcanvas-body{
   padding-top: 10px;
 }
-.offcanvas-body a {
+
+.offcanvas-body a{
   display: block;
   padding: 16px 0;
   font-size: 18px;
   font-weight: 500;
   color: #1f3f1b;
   text-decoration: none;
-
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
 }
-.offcanvas-body a:hover {
+
+.offcanvas-body a:hover{
   color: #4f7c2b;
 }
 
-/* Sahne Düzenlemelri */
-.energy-system {
+
+.hero-content{
+  position: absolute;
+  top: 50%;
+  left: 48%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+  width: max-content;
+  max-width: 90vw;
+}
+
+.hero-content h1{
+  margin: 0;
+  color: #1f3f1b;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 10px rgba(255, 235, 120, 0.35);
+  font-size: 35px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.hero-content p{
+  margin: 10px 0 0;
+  color: #2e5b2a;
+  font-weight: 600;
+  font-size: 20px;
+  opacity: 0.95;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+@keyframes glowPulse{
+  0%   { filter: drop-shadow(0 0 0 rgba(255,255,150,0)); }
+  50%  { filter: drop-shadow(0 0 12px rgba(255,255,150,0.45)); }
+  100% { filter: drop-shadow(0 0 0 rgba(255,255,150,0)); }
+}
+.hero-content h1,
+.hero-content p{
+  animation: glowPulse 2.8s ease-in-out infinite;
+}
+
+
+
+/* Ring katmanı (sadece görsel) */
+.energy-layer{
   position: absolute;
   inset: 0;
-  z-index: 4;
-  pointer-events: none;
+  z-index: 6;
+  pointer-events: none; 
 }
-.energy-ring {
+
+/* Dönen halkalar */
+.rings{
   position: absolute;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  left: 48%;
-  top: 52%;
+  left: 46%;
+  top: 51%;
+  width: 583px;
+  height: 589px;
   transform: translate(-50%, -50%);
-
-  border:  2px solid rgba(255, 255, 255, 0.25);
-   box-shadow: 0 0 30px rgba(255, 255, 150, 0.15);
-  filter: blur(0.2px);
-
-  animation: ringRotate 60s linear infinite;
-
-}
-@keyframes ringRotate{
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to   { transform: translate(-50%, -50%) rotate(360deg); }
+  will-change: transform;
 }
 
-/* Baloncuk düzenlemelri */
-.energy-bubble {
+.rings::before,
+.rings::after{
+  content:"";
   position: absolute;
-  width: 64px;
-  height: 64px;
+  inset: 0;
   border-radius: 50%;
+  border: 2px dashed rgba(237, 223, 23, 0.60);
+  animation: ringRotate 5s linear infinite;
+}
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.rings::after{
+  inset: 90px;
+  border: 2px dashed rgba(237, 223, 23, 0.60);
+  background: radial-gradient(circle at 20% 15%, rgb(251, 240, 96) 0 5px, transparent 6px);
+  animation: ringRotate 7s linear infinite reverse;
+}
 
-  font-size: 22px;
-  font-weight: 700;
+@keyframes ringRotate{
+  from{ transform: rotate(0deg); }
+  to  { transform: rotate(360deg); }
+}
 
-  /* cam gibi */
-  background: rgba(255, 255, 255, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+/* Baloncukların container'ı */
+#bubble-container{
+  position: absolute;
+  inset: 0;
+  z-index: 9; 
+  pointer-events: none; 
+}
 
-  color: #1f3f1b;
+/* Baloncuk */
+.energy-bubble{
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: auto; 
   cursor: pointer;
 
-  /* canlılık */
-  animation: bubbleFloat 3.8s ease-in-out infinite;
-  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.24);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 
-  /* tıklanabilir olsun diye sahneden bağımsız */
-  pointer-events: auto;
+  transition: transform 250ms ease, box-shadow 250ms ease, background 250ms ease, border-color 250ms ease;
 }
 
 .energy-bubble:hover{
-  transform: scale(1.12);
-  background: rgba(255,255,255,0.28);
-  box-shadow: 0 0 22px rgba(255, 255, 150, 0.35);
+  transform: translate(-50%, -50%) scale(1.10);
+  background: rgba(255,255,255,0.16);
+  border-color: rgba(242, 179, 5, 0.70);
+  box-shadow:
+    0 0 18px rgba(242, 179, 5, 0.28),
+    0 0 34px rgba(122, 255, 160, 0.18);
 }
 
-@keyframes bubbleFloat{
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-9px); }
-  100% { transform: translateY(0); }
-}
-
-/* Mobilde küçült */
-@media (max-width: 576px){
-  .energy-ring{ width: 300px; height: 300px; }
-  .energy-bubble{ width: 52px; height: 52px; font-size: 18px; }
-}
-
-.energy-bubble img {
-  width: 32px;
-  height: 32px;
-  filter: brightness(0) invert(1);
-}
-
-
-
-
-
-/* Footer css */
+/* =========================
+   7) MINI COPYRIGHT
+========================= */
 .mini-copy{
-  position:absolute;
+  position: absolute;
   bottom: 14px;
   left: 50%;
   transform: translateX(-50%);
   color: rgba(255,255,255,0.85);
   font-size: 13px;
-  z-index: 2;
+  z-index: 10;
   text-shadow: 0 2px 10px rgba(0,0,0,0.35);
 }
-
-

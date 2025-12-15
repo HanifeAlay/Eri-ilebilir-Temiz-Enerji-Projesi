@@ -1,83 +1,73 @@
 /* Baloncukları oluşturuyoruz */
 
+document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById("bubble-container");
 
-document.addEventListener ("DOMContentLoaded", () => {
-    
-    const ring = document.querySelector(".energy-ring");
-    if(!ring) {
-        console.error("HATA: .energy-ring bulunamadı. HTML'de <div class ='energy-ring'></div> var mı?");
+    if (!container) {
+        console.error("HATA: #bubble-container bulunamadı.");
         return;
     }
 
-    const bubbles = [
-        {
-            icon: "sun.svg",
-            title: "Erişilebilir ve Temiz Enerji Nedir?",
-            href: "#"
-        },
-        {
-            icon: "pompa.svg",
-            title: "Dünyada Temiz Enerji için alınması gereken önlemler",
-            href: "#"
-        },
-        {
-            icon: "panel.svg",
-            title: "Yeni Yapılarda Enerji Tasarrufu",
-            href: "#"
-        },
-        {
-            icon: "tarim.svg",
-            title: "Evlerimizde Enerji Tasarrufu",
-            href: "#"
-        },
-        {
-            icon: "geridonusum.svg",
-            title: "Ger Dönüşüm ve Sürdürülebilirlik",
-            href: "#"
-        },
-        {
-            icon: "ekip.svg",
-            title: "Proje Ekibi",
-            href: "#"
-        },
-        {
-            icon: "wind.svg",
-            title: "Gelecek Hayalim Kimdir?",
-            href: "#"
-        },
-    ];
+     const bubbles = [
+    { title: "Erişilebilir ve Temiz Enerji Nedir?", 
+      href: "./erisilebilirEnerjiNedir.html", 
+      top: "12%", 
+      left: "45%" 
+    },
+    { title: "Gelecek Hayalim Nedir?", 
+      href: "./gelecekHayalim.html", 
+      top: "49%", 
+      left: "54%" 
+    },
+    {  title: "Yeni Yapılarda Enerji Tasarrufu", 
+      href: "./yeniYapilardaTasarruf.html", 
+       top: "23%", 
+      left: "79%" 
+    },
+    {title: "Evlerimizde Enerji Tasarrufu", 
+      href: "./evdeTasarruf.html", 
+     top: "43%", 
+      left: "93%" 
+    },
+    { title: "Dünyada Temiz Enerji İçin Alınması Gereken Önlemler", 
+      href: "./dünyamızdaÖnlemler.html", 
+      top: "44%", 
+      left: "2%" 
+    },
+    { title: "Proje Ekibi", 
+      href: "./projeEkibi.html", 
+      top: "84%", 
+      left: "70%" 
+    },
+    { title: "Geri Dönüşüm ve Sürdürülebilirlik", 
+      href: "./geriDonusum.html", 
+      top: "85%", 
+      left: "22%" 
+    },
+    { title: "Doğada Enerji Tasarrufu", 
+      href: "./dogadaTasarruf.html", 
+       top: "68%", 
+      left: "91%" 
+    },
+    { title: "Yerel Etki", 
+      href: "./yerelEtki.html", 
+       top: "68%", 
+      left: "4%" 
+    },
+  ];
 
-    /* Daire Düzeni */
-    const ringRect = ring.getBoundingClientRect();
-    const centerX = ringRect.width / 2;
-    const centerY = ringRect.height / 2;
+  bubbles.forEach((item) => {
+    const bubble = document.createElement("a");
+    bubble.className = "energy-bubble";
+    bubble.href = item.href;
+    bubble.title = item.title;
+    bubble.setAttribute("aria-label", item.title);
 
-    const radius = Math.min(centerX, centerY) -45;
+    bubble.style.top = item.top;
+    bubble.style.left = item.left;
 
-    const bubbleSize = 64;
-    const bubbleHalf = bubbleSize / 2;
+    container.appendChild(bubble);
+  });
+ console.log("Hit-area baloncuklar üzetildi:", bubbles.length)
 
-    bubbles.forEach((item, index) => {
-        const angle = (index / bubbles.length) * (2 * Math.PI) - Math.PI / 2;
-
-        const x = centerX + radius * Math.cos(angle) -bubbleHalf;
-        const y = centerY + radius * Math.sin(angle) -bubbleHalf;
-
-        const bubble = document.createElement("a");
-        bubble.className = "energy-bubble";
-        bubble.href = item.href;
-        bubble.title = item.title;
-        bubble.setAttribute("aria-label", item.title);
-
-        bubble.style.left = `${x}px`;
-        bubble.style.top = `${y}px`;
-
-        const img = document.createElement("img");
-        img.src = `../icons/${item.icon}`;
-        img.alt = item.title;
-
-        bubble.appendChild(img);
-        ring.appendChild(bubble);
-    });
-    console.log("BAlonsuklar üretildi", bubbles.length);
-})
+});
