@@ -1,7 +1,4 @@
-/* =========================
-   1) RESET / BODY
-========================= */
-* { box-sizing: border-box; }
+
 
 html, body{
   margin: 0;
@@ -9,40 +6,46 @@ html, body{
   font-family: "Playfair Display", serif;
 }
 
+/* HERO artık full sayfa değil: banner */
 .hero{
-  min-height: 100vh;
+  min-height: unset;
   position: relative;
   overflow: hidden;
 }
 
-/* Arka plan katmanı */
+/* Banner alanı */
 .hero-bg{
   position: relative;
-  min-height: 100vh;
-  background-image: url("../İmages/arkaplan1.png");
+  height: 700px; /* üst banner yüksekliği */
+  background-image: url("../İmages/arkaplan1.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  overflow: hidden;
+
 }
 
-
-/* =========================
-   3) NAVBAR / ICON
-========================= */
+/* NAVBAR üstte sabit */
 .navbar{
-  position: relative;
-  z-index: 20; /* her şeyin üstünde */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(3px);
+  
 }
 
-.bi{
+/* Menü ikonu */
+.menu-icon{
   font-size: 35px;
   color: #1f3f1b;
   cursor: pointer;
 }
 
-/* =========================
-   4) OFFCANVAS
-========================= */
+/* OFFCANVAS */
 .offcanvas{
   background-color: #f7f8f5;
   color: #1f3f1b;
@@ -72,7 +75,7 @@ html, body{
   color: #4f7c2b;
 }
 
-
+/* HERO CONTENT (yazı) */
 .hero-content{
   position: absolute;
   top: 50%;
@@ -82,6 +85,7 @@ html, body{
   text-align: center;
   width: max-content;
   max-width: 90vw;
+  
 }
 
 .hero-content h1{
@@ -103,7 +107,6 @@ html, body{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-
 @keyframes glowPulse{
   0%   { filter: drop-shadow(0 0 0 rgba(255,255,150,0)); }
   50%  { filter: drop-shadow(0 0 12px rgba(255,255,150,0.45)); }
@@ -114,23 +117,21 @@ html, body{
   animation: glowPulse 2.8s ease-in-out infinite;
 }
 
-
-
-/* Ring katmanı (sadece görsel) */
-.energy-layer{
+/* ENERGY SYSTEM */
+.energy-system{
   position: absolute;
   inset: 0;
   z-index: 6;
-  pointer-events: none; 
+  pointer-events: none;
 }
 
-/* Dönen halkalar */
+/* Ring katmanı */
 .rings{
   position: absolute;
-  left: 46%;
-  top: 51%;
-  width: 583px;
-  height: 589px;
+  left: 49%;
+  top: 49%;
+  width: 620px;
+  height: 620px;
   transform: translate(-50%, -50%);
   will-change: transform;
 }
@@ -141,13 +142,13 @@ html, body{
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 2px dashed rgba(237, 223, 23, 0.60);
+  border: 2px dashed rgba(248, 243, 175, 0.423);
   animation: ringRotate 5s linear infinite;
 }
 
 .rings::after{
-  inset: 90px;
-  border: 2px dashed rgba(237, 223, 23, 0.60);
+  inset: 100px;
+  border: 2px dashed rgba(251, 240, 96);
   background: radial-gradient(circle at 20% 15%, rgb(251, 240, 96) 0 5px, transparent 6px);
   animation: ringRotate 7s linear infinite reverse;
 }
@@ -157,34 +158,45 @@ html, body{
   to  { transform: rotate(360deg); }
 }
 
-/* Baloncukların container'ı */
-#bubble-container{
+/* ORBIT (tek grup döner) */
+.orbit-ring{
   position: absolute;
-  inset: 0;
-  z-index: 9; 
+  left: 46%;
+  top: 51%;
+  width: 583px;
+  height: 589px;
+  transform: translate(-50%, -50%);
+  z-index: 9;
+  animation: orbitSpin 18s linear infinite;
   pointer-events: none; 
 }
 
-/* Baloncuk */
-.energy-bubble{
+@keyframes orbitSpin{
+  from{ transform: translate(-50%, -50%) rotate(0deg); }
+  to  { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Orbit item = tıklanabilir baloncuk */
+.orbit-item{
   position: absolute;
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: auto; 
-  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   background: rgba(255,255,255,0.10);
   border: 1px solid rgba(255,255,255,0.24);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+ 
 
   transition: transform 250ms ease, box-shadow 250ms ease, background 250ms ease, border-color 250ms ease;
+
 }
 
-.energy-bubble:hover{
-  transform: translate(-50%, -50%) scale(1.10);
+.orbit-item:hover{
+  transform: scale(1.10);
   background: rgba(255,255,255,0.16);
   border-color: rgba(242, 179, 5, 0.70);
   box-shadow:
@@ -192,16 +204,100 @@ html, body{
     0 0 34px rgba(122, 255, 160, 0.18);
 }
 
-/* =========================
-   7) MINI COPYRIGHT
-========================= */
-.mini-copy{
-  position: absolute;
-  bottom: 14px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: rgba(255,255,255,0.85);
-  font-size: 13px;
-  z-index: 10;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.35);
+.orbit-item img{
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+/* 8 konum */
+.i1{ top:0%;   left:50%; transform: translate(-50%, -30%); }
+
+.i2{ top:12%;  left:83%; transform: translate(-50%, -50%); }
+
+.i3{ top:50%;  left:100%; transform: translate(-65%, -50%); }
+
+.i4{ top:88%;  left:83%; transform: translate(-50%, -50%); }
+
+.i5{ top:100%; left:50%; transform: translate(-50%, -70%); }
+
+.i6{ top:88%;  left:17%; transform: translate(-50%, -50%); }
+
+.i7{ top:50%;  left:0%;  transform: translate(-35%, -50%); }
+
+.i8{ top:12%;  left:17%; transform: translate(-50%, -50%); }
+
+
+/* ALT SAYFA BEYAZ */
+.page-white{
+  background: #fff;
+  padding: 50px 0 0;
+}
+
+/* Kartlar */
+.cards-wrap{
+  width: min(980px, 92%);
+  margin: 0 auto;
+  display: grid;
+  gap: 18px;
+  padding-bottom: 40px;
+}
+
+.card-box{
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 16px;
+  padding: 18px 16px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.06);
+}
+/* Kart içi fotoğraflar */
+.card-img{
+  width: 100%;
+  height: 190px;        /* sabit yükseklik = düzen */
+  object-fit: cover;   /* taşmadan kırp */
+  border-radius: 14px;
+  margin-bottom: 14px;
+}
+
+
+/* Scroll animasyonu */
+.reveal{
+  opacity: 0;
+  transition: all .7s ease;
+}
+.from-right{ transform: translateX(70px); }
+.from-left{ transform: translateX(-70px); }
+
+.reveal.show{
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Footer */
+.footer{
+  border-top: 1px solid rgba(0,0,0,0.08);
+  padding: 18px 0;
+  text-align: center;
+  color: #1f3f1b;
+}
+
+/* Responsive */
+@media (max-width: 768px){
+  .hero-bg{
+    height: 520px;
+  }
+  .rings, .orbit-ring{
+    width: 320px;
+    height: 320px;
+  }
+  .orbit-item{
+    width: 72px;
+    height: 72px;
+  }
+  .orbit-item img{
+    width: 32px;
+    height: 32px;
+  }
 }
